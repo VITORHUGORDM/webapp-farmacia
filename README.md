@@ -1,10 +1,10 @@
-# WebApp de Fisioterapia
+# WebApp de Farmacia
 
 Este projeto é um aplicativo web desenvolvido com **Next.js** e **TypeScript**, destinado a auxiliar o curso de fisioterapia com seus pacientes.
 
 ## Repositório Git
 
-O código-fonte deste projeto está hospedado no GitHub: [https://github.com/Lads-iesgo/webapp-fisioterapia.git](https://github.com/Lads-iesgo/webapp-fisioterapia.git)
+O código-fonte deste projeto está hospedado no GitHub: [https://github.com/Lads-iesgo/webapp-farmacia.git](https://github.com/Lads-iesgo/webapp-farmacia.git)
 
 ## Tecnologias Utilizadas
 
@@ -24,8 +24,8 @@ O código-fonte deste projeto está hospedado no GitHub: [https://github.com/Lad
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/Lads-iesgo/webapp-fisioterapia.git
-   cd webapp-fisioterapia
+   git clone https://github.com/Lads-iesgo/webapp-farmacia.git
+   cd webapp-farmacia
    ```
 
 2. **Instale as dependências:**
@@ -45,7 +45,7 @@ O código-fonte deste projeto está hospedado no GitHub: [https://github.com/Lad
 ## Estrutura do Projeto
 
 ```
-📦 webapp-fisioterapia
+📦 webapp-farmacia
 ┣ 📂 public/           # Arquivos estáticos (imagens, fontes, etc.)
 ┣ 📂 app/              # Estrutura principal do Next.js
 ┃ ┣ 📂 components/     # Componentes reutilizáveis
