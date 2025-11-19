@@ -59,7 +59,7 @@ export default function RecuperarSenha() {
             className="mb-2"
           />
           <h2 className="text-white text-xl font-semibold tracking-wide">
-            FISIOTERAPIA
+            FARMÁCIA
           </h2>
         </div>
 
@@ -120,8 +120,8 @@ export default function RecuperarSenha() {
             </div>
           </form>
 
-          <div className="mt-6 text-center text-sm text-gray-500">
-            <p>© {new Date().getFullYear()} IESGO - Clínica de Fisioterapia</p>
+          <div className="mt-8 text-center text-sm text-gray-500">
+            <p>© {new Date().getFullYear()} IESGO - Clínica de Farmácia</p>
           </div>
         </div>
       </div>

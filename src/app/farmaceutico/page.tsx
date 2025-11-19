@@ -63,7 +63,7 @@ export default function PaginaTratamento() {
     <div className="bg-white h-screen flex flex-row overflow-hidden ml-[288px]">
       <NavBar />
       <div className="flex flex-col flex-1">
-        <TopBar title="PACIENTES EM TRATAMENTO" />
+        <TopBar title="Farmacêutico" />
         <main className="flex flex-1 items-start justify-center p-8 overflow-y-auto bg-gray-100 relative mt-4">
           <div className="bg-white w-full max-w-5xl mt-8 rounded-[20px] shadow-sm overflow-hidden">
             <div className="bg-blue-900 h-12 w-full"></div>
@@ -107,7 +107,7 @@ export default function PaginaTratamento() {
 
                 {consultas.length === 0 && !loading && (
                   <div className="text-center text-gray-500 mt-10">
-                    Nenhuma consulta encontrada.
+                    Nenhum farmacêutico encontrado.
                   </div>
                 )}
               </div>

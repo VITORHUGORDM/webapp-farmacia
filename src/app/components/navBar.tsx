@@ -58,7 +58,15 @@ export default function NavBar() {
                 href="/cadastroFarmaceutico"
                 className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
               >
-                <span className="text-lg">Farmaceutico</span>
+                <span className="text-lg">Cadastrar farmaceutico</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/farmaceutico"
+                className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
+              >
+                <span className="text-lg">Farmacêutico</span>
               </Link>
             </li>
             <li>
@@ -66,7 +74,7 @@ export default function NavBar() {
                 href="/cadastroUsuario"
                 className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
               >
-                <span className="text-lg">Medicamento</span>
+                <span className="text-lg">Cadastrar Medicamento</span>
               </Link>
             </li>
             <li>
@@ -74,7 +82,23 @@ export default function NavBar() {
                 href="/cadastroPaciente"
                 className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
               >
-                <span className="text-lg">Paciente</span>
+                <span className="text-lg">Cadastro Paciente</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/cadastroTratamento"
+                className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
+              >
+                <span className="text-lg">Cadastrar Tratamento</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/adicionarTratamento"
+                className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
+              >
+                <span className="text-lg">Adicionar Tratamento</span>
               </Link>
             </li>
             <li>

@@ -57,7 +57,7 @@ export default function CadastroMedicamentos() {
 
       setMensagem({
         tipo: "sucesso",
-        texto: "Paciente cadastrado com sucesso!",
+        texto: "Farmaceutico cadastrado com sucesso!",
       });
     } catch (error) {
       const axiosError = error as AxiosError<{ message?: string }>;
@@ -65,7 +65,7 @@ export default function CadastroMedicamentos() {
         tipo: "erro",
         texto:
           axiosError.response?.data?.message ||
-          "Erro ao cadastrar paciente. Tente novamente.",
+          "Erro ao cadastrar farmaceutico. Tente novamente.",
       });
     } finally {
       setLoading(false);

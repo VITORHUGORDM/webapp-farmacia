@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clínica de Fisioterapia",
-  description: "Sistema de gerenciamento agenda para clínica de fisioterapia",
+  title: "Clínica de Farmácia",
+  description: "Sistema de gerenciamento agenda para clínica de farmácia",
 };
 
 export default function RootLayout({
@@ -30,9 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CookiesProvider>
-          <NotificationProvider>
-            {children}
-          </NotificationProvider>
+          <NotificationProvider>{children}</NotificationProvider>
         </CookiesProvider>
       </body>
     </html>
