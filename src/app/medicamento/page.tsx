@@ -14,7 +14,7 @@ import NavBar from "@/app/components/navBar";
 import TopBar from "../components/topBar";
 import api from "../services/api";
 import { Consulta, Paciente } from "../interfaces/types";
-import ModalCadastroFarmaceutico from "../components/ModalCadastroFarmaceutico";
+import ModalCadastroMedicamento from "../cadastroMedicamentos/ModalCadastroMedicamento";
 
 export default function PaginaTratamento() {
   const router = useRouter();
@@ -65,7 +65,7 @@ export default function PaginaTratamento() {
     <div className="bg-white h-screen flex flex-row overflow-hidden ml-[288px]">
       <NavBar />
       <div className="flex flex-col flex-1">
-        <TopBar title="Farmacêutico" />
+        <TopBar title="Medicamento" />
         <main className="flex flex-1 items-start justify-center p-8 overflow-y-auto bg-gray-100 relative mt-4">
           <div className="bg-white w-full max-w-5xl mt-8 rounded-[20px] shadow-sm overflow-hidden">
             <div className="bg-blue-900 h-12 w-full"></div>
@@ -109,7 +109,7 @@ export default function PaginaTratamento() {
 
                 {consultas.length === 0 && !loading && (
                   <div className="text-center text-gray-500 mt-10">
-                    Nenhum farmacêutico encontrado.
+                    Nenhum medicamento encontrado.
                   </div>
                 )}
               </div>
@@ -117,11 +117,11 @@ export default function PaginaTratamento() {
           </div>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="fixed bottom-10 right-10 px-25 py-8 bg-blue-900 text-white rounded-full p-4 shadow-lg hover:bg-blue-800 transition-colors"
+            className="fixed bottom-10 right-10 px-25 py-8 bg-blue-900 text-white rounded-full p-4 shadow-lg hover:bg-blue-800 transition-colors pointer-events-auto"
           >
-            <h1>Cadastrar Farmacêutico</h1>
+            <h1>Cadastrar Medicamento</h1>
           </button>
-          <ModalCadastroFarmaceutico
+          <ModalCadastroMedicamento
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
           />
