@@ -15,7 +15,6 @@ export default function CadastroMedicamentos() {
     CPF: "",
     telefone: "",
     genero: "",
-    RN: "",
   });
   const [loading, setLoading] = useState(false);
   const [mensagem, setMensagem] = useState<{
@@ -41,7 +40,6 @@ export default function CadastroMedicamentos() {
         Sobrenome: form.sobrenome,
         CPF: form.CPF,
         Telefone: form.telefone,
-        RN: form.RN,
       };
 
       await api.post("/medicamento", dadosMedicamento);
@@ -52,7 +50,6 @@ export default function CadastroMedicamentos() {
         CPF: "",
         telefone: "",
         genero: "",
-        RN: "",
       });
 
       setMensagem({
@@ -135,20 +132,7 @@ export default function CadastroMedicamentos() {
                     required
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">
-                    CRF-RN
-                  </label>
-                  <input
-                    type="text"
-                    name="RN"
-                    value={form.RN}
-                    placeholder="Ex.:RN123456"
-                    onChange={handleChange}
-                    className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black text-sm"
-                    required
-                  />
-                </div>
+                <div></div>
                 {mensagem && (
                   <div
                     className={`text-center font-semibold rounded-[10px] p-2 text-sm ${

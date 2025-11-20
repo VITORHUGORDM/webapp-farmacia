@@ -8,7 +8,7 @@ import TopBar from "../components/topBar";
 import Button from "../components/button";
 import api from "../services/api";
 
-export default function CadastroMedicamentos() {
+export default function CadastroPaciente() {
   const [form, setForm] = useState({
     nome: "",
     sobrenome: "",

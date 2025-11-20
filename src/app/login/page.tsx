@@ -57,7 +57,7 @@ export default function Login() {
       sessionStorage.setItem("loginSuccess", "true");
 
       // Redireciona para a página home sem mostrar notificação aqui
-      router.push("/cronograma");
+      router.push("/tratamento");
     } catch (error: unknown) {
       // Continua mostrando notificação de erro aqui
       let errorMessage =
@@ -88,7 +88,7 @@ export default function Login() {
             className="mb-2"
           />
           <h2 className="text-white text-xl font-semibold tracking-wide">
-            FARMACIA
+            FARMÁCIA
           </h2>
         </div>
 
@@ -148,7 +148,7 @@ export default function Login() {
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-500">
-            <p>© {new Date().getFullYear()} IESGO - Clínica de Farmacia</p>
+            <p>© {new Date().getFullYear()} IESGO - Clínica de Farmácia</p>
           </div>
         </div>
       </div>

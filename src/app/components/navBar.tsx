@@ -22,7 +22,7 @@ export default function NavBar() {
     showNotification("success", "Logout realizado com sucesso!");
 
     // Redirecionar para a página de login
-    router.push("/login");
+    router.push("/home");
   };
 
   return (
@@ -38,7 +38,7 @@ export default function NavBar() {
             className="mb-2"
           />
           <h2 className="text-white text-xl font-semibold tracking-wide">
-            FARMACIA
+            FARMÁCIA
           </h2>
         </div>
 
@@ -47,18 +47,10 @@ export default function NavBar() {
           <ul className="space-y-2">
             <li>
               <Link
-                href="/cronograma"
+                href="/home"
                 className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
               >
-                <span className="text-lg">Cronograma</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/cadastroFarmaceutico"
-                className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
-              >
-                <span className="text-lg">Cadastrar farmaceutico</span>
+                <span className="text-lg">Home</span>
               </Link>
             </li>
             <li>
@@ -71,10 +63,10 @@ export default function NavBar() {
             </li>
             <li>
               <Link
-                href="/cadastroUsuario"
+                href="/cadastroMedicamentos"
                 className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
               >
-                <span className="text-lg">Cadastrar Medicamento</span>
+                <span className="text-lg">Medicamento</span>
               </Link>
             </li>
             <li>
@@ -82,23 +74,7 @@ export default function NavBar() {
                 href="/cadastroPaciente"
                 className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
               >
-                <span className="text-lg">Cadastro Paciente</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/cadastroTratamento"
-                className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
-              >
-                <span className="text-lg">Cadastrar Tratamento</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/adicionarTratamento"
-                className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
-              >
-                <span className="text-lg">Adicionar Tratamento</span>
+                <span className="text-lg">Paciente</span>
               </Link>
             </li>
             <li>
