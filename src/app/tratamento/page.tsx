@@ -13,12 +13,12 @@ import { UserIcon as UserIconSolid } from "@heroicons/react/24/solid";
 import NavBar from "../components/navBar";
 import TopBar from "../components/topBar";
 import api from "../services/api";
-import { Consulta, Paciente } from "../interfaces/types";
+import { Tratamento, Paciente } from "../interfaces/types";
 import ModalAdicionarTratamento from "../adicionarTratamento/ModalAdicionarTratamento";
 
-export default function Tratamento() {
+export default function PaginaTratamento() {
   const router = useRouter();
-  const [consultas, setConsultas] = useState<Consulta[]>([]);
+  const [tratamentos, setTratamentos] = useState<Tratamento[]>([]);
   const [pacientes, setPacientes] = useState<Paciente[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -29,11 +29,11 @@ export default function Tratamento() {
 
   async function fetchData() {
     try {
-      const [consultasRes, pacientesRes] = await Promise.all([
-        api.get<Consulta[]>("/consulta"),
+      const [tratamentosRes, pacientesRes] = await Promise.all([
+        api.get<Tratamento[]>("/tratamento"),
         api.get<Paciente[]>("/paciente"),
       ]);
-      setConsultas(consultasRes.data);
+      setTratamentos(tratamentosRes.data);
       setPacientes(pacientesRes.data);
     } catch (error) {
       console.error("Erro ao buscar dados:", error);
@@ -52,8 +52,8 @@ export default function Tratamento() {
   async function handleDelete(id: number | string) {
     if (confirm("Tem certeza que deseja excluir esta consulta?")) {
       try {
-        await api.delete(`/consulta/${id}`);
-        setConsultas(consultas.filter((c) => c.id !== id));
+        await api.delete(`/tratamento/${id}`);
+        setTratamentos(tratamentos.filter((t) => t.id !== id));
       } catch (error) {
         console.error("Erro ao excluir consulta:", error);
         alert("Erro ao excluir consulta.");
@@ -77,28 +77,32 @@ export default function Tratamento() {
               </div>
 
               <div className="flex flex-col gap-4">
-                {consultas.map((consulta) => (
+                {tratamentos.map((tratamento) => (
                   <div
-                    key={consulta.id}
+                    key={tratamento.id}
                     className="bg-[#D9D9D9] rounded-full py-4 px-6 flex items-center justify-between"
                   >
                     <div className="flex items-center gap-4">
                       <UserIconSolid className="h-12 w-12 text-black" />
                       <span className="text-black uppercase italic text-lg">
-                        NOME: {getNomePaciente(consulta.paciente_id)}
+                        NOME: {getNomePaciente(tratamento.paciente_id)}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <button
                         onClick={() =>
-                          router.push(`/tratamento/cadastro?id=${consulta.id}`)
+                          router.push(
+                            `/tratamento/cadastro?id=${tratamento.id}`
+                          )
                         }
                         className="text-black hover:text-gray-800"
                       >
                         <PencilSquareIcon className="h-10 w-10 stroke-2" />
                       </button>
                       <button
-                        onClick={() => consulta.id && handleDelete(consulta.id)}
+                        onClick={() =>
+                          tratamento.id && handleDelete(tratamento.id)
+                        }
                         className="text-black hover:text-gray-800"
                       >
                         <TrashIcon className="h-10 w-10 stroke-2" />
@@ -107,9 +111,9 @@ export default function Tratamento() {
                   </div>
                 ))}
 
-                {consultas.length === 0 && !loading && (
+                {tratamentos.length === 0 && !loading && (
                   <div className="text-center text-gray-500 mt-10">
-                    Nenhuma consulta encontrada.
+                    Nenhum tratamento encontrado.
                   </div>
                 )}
               </div>
