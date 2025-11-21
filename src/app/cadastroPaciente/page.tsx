@@ -2,13 +2,21 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import { AxiosError } from "axios";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
-import NavBar from "../components/navBar";
-import TopBar from "../components/topBar";
 import Button from "../components/button";
 import api from "../services/api";
+import PopupCadastroPacienteSucesso from "../components/PopupCadastroPacienteSucesso";
 
-export default function CadastroPaciente() {
+interface ModalCadastroPacienteProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function CadastroPaciente({
+  isOpen,
+  onClose,
+}: ModalCadastroPacienteProps) {
   const [form, setForm] = useState({
     nome: "",
     sobrenome: "",
@@ -21,6 +29,14 @@ export default function CadastroPaciente() {
     tipo: "erro" | "sucesso";
     texto: string;
   } | null>(null);
+
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [successData, setSuccessData] = useState({
+    nome: "",
+    sobrenome: "",
+    cpf: "",
+    telefone: "",
+  });
 
   function handleChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -35,7 +51,7 @@ export default function CadastroPaciente() {
     setLoading(true);
 
     try {
-      const dadosMedicamento = {
+      const dadosPaciente = {
         Nome: form.nome,
         Sobrenome: form.sobrenome,
         CPF: form.CPF,
@@ -43,7 +59,14 @@ export default function CadastroPaciente() {
         genero: form.genero,
       };
 
-      await api.post("/medicamento", dadosMedicamento);
+      await api.post("/paciente", dadosPaciente);
+      setSuccessData({
+        nome: form.nome,
+        sobrenome: form.sobrenome,
+        cpf: form.CPF,
+        telefone: form.telefone,
+      });
+      setShowSuccessPopup(true);
 
       setForm({
         nome: "",
@@ -53,10 +76,10 @@ export default function CadastroPaciente() {
         genero: "",
       });
 
-      setMensagem({
-        tipo: "sucesso",
-        texto: "Paciente cadastrado com sucesso!",
-      });
+      // setMensagem({
+      //   tipo: "sucesso",
+      //   texto: "Paciente cadastrado com sucesso!",
+      // });
     } catch (error) {
       const axiosError = error as AxiosError<{ message?: string }>;
       setMensagem({
@@ -71,16 +94,33 @@ export default function CadastroPaciente() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 min-w-[1280px] overflow-hidden">
-      <NavBar />
-      <div className="ml-72">
-        <TopBar title="CADASTRO PACIENTES" />
-        <main className="flex justify-center items-center h-[calc(100vh-64px)] mt-16 px-0">
-          <div className="w-[600px]">
-            <div className="overflow-hidden rounded-[20px] shadow-lg border border-blue-200 bg-white">
-              <div className="bg-blue-900 h-10 w-full"></div>
+    <>
+      <PopupCadastroPacienteSucesso
+        isOpen={showSuccessPopup}
+        onClose={() => {
+          setShowSuccessPopup(false);
+          onClose();
+        }}
+        dados={successData}
+      />
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
+          <div className="bg-white rounded-[20px] shadow-lg w-[600px] max-h-[90vh] overflow-y-auto relative ml-64 mb-20">
+            <div className="bg-blue-900 h-10 w-full flex items-center justify-end px-4">
+              <button
+                onClick={onClose}
+                className="text-white hover:text-gray-200"
+              >
+                <XMarkIcon className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="px-8 py-6">
+              <h2 className="text-2xl font-bold text-center mb-6 text-blue-900">
+                CADASTRO PACIENTES
+              </h2>
               {/* Formulário de cadastro de Pacientes */}
-              <form onSubmit={handleSubmit} className="px-8 py-6 space-y-3">
+              <form onSubmit={handleSubmit} className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium mb-1">Nome</label>
                   <input
@@ -176,8 +216,8 @@ export default function CadastroPaciente() {
               </form>
             </div>
           </div>
-        </main>
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 }

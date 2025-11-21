@@ -71,7 +71,7 @@ export default function NavBar() {
             </li>
             <li>
               <Link
-                href="/cadastroPaciente"
+                href="/paciente"
                 className="flex items-center text-gray-200 hover:bg-blue-800 rounded-lg px-4 py-3 transition-colors"
               >
                 <span className="text-lg">Paciente</span>

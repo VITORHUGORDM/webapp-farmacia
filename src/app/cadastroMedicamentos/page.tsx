@@ -6,23 +6,25 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import Button from "../components/button";
 import api from "../services/api";
-import PopupCadastroSucesso from "../components/PopupCadastroSucesso";
+import PopupCadastroMedicamentoSucesso from "../components/PopupCadastroMedicamentoSucesso";
 
-interface ModalCadastroFarmaceuticoProps {
+interface ModalCadastroMedicamentoProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function ModalCadastroFarmaceutico({
+export default function ModalCadastroMedicamento({
   isOpen,
   onClose,
-}: ModalCadastroFarmaceuticoProps) {
+}: ModalCadastroMedicamentoProps) {
   const [form, setForm] = useState({
     nome: "",
-    sobrenome: "",
-    CPF: "",
-    telefone: "",
-    matricula: "",
+    dosagem: "",
+    tipo: "",
+    tarja: "",
+    via_consumo: "",
+    mg_ml: "",
+    alertas: "",
   });
   const [loading, setLoading] = useState(false);
   const [mensagem, setMensagem] = useState<{
@@ -33,8 +35,11 @@ export default function ModalCadastroFarmaceutico({
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [successData, setSuccessData] = useState({
     nome: "",
-    sobrenome: "",
-    matricula: "",
+    dosagem: "",
+    tipo: "",
+    tarja: "",
+    mg_ml: "",
+    alertas: "",
   });
 
   if (!isOpen) return null;
@@ -52,48 +57,49 @@ export default function ModalCadastroFarmaceutico({
     setLoading(true);
 
     try {
-      const dadosFarmaceutico = {
-        Nome: form.nome,
-        Sobrenome: form.sobrenome,
-        CPF: form.CPF,
-        Telefone: form.telefone,
-        matricula: form.matricula,
+      const dadosMedicamento = {
+        nome: form.nome,
+        dosagem: form.dosagem,
+        tipo: form.tipo,
+        tarja: form.tarja,
+        via_consumo: form.via_consumo,
+        mg_ml: form.mg_ml,
+        alertas: form.alertas,
       };
 
-      // Ajuste o endpoint conforme necessário.
-      // Baseado no cadastroFarmaceutico/page.tsx original estava /medicamento,
-      // mas aqui estou mudando para /farmaceutico pois faz mais sentido.
-      await api.post("/farmaceutico", dadosFarmaceutico);
+      await api.post("/medicamento", dadosMedicamento);
 
       setSuccessData({
         nome: form.nome,
-        sobrenome: form.sobrenome,
-        matricula: form.matricula,
+        dosagem: form.dosagem,
+        tipo: form.tipo,
+        tarja: form.tarja,
+        mg_ml: form.mg_ml,
+        alertas: form.alertas,
       });
       setShowSuccessPopup(true);
 
       setForm({
         nome: "",
-        sobrenome: "",
-        CPF: "",
-        telefone: "",
-        matricula: "",
+        dosagem: "",
+        tipo: "",
+        tarja: "",
+        via_consumo: "",
+        mg_ml: "",
+        alertas: "",
       });
 
       // setMensagem({
       //   tipo: "sucesso",
-      //   texto: "Farmacêutico cadastrado com sucesso!",
+      //   texto: "Medicamento cadastrado com sucesso!",
       // });
-
-      // Opcional: fechar o modal após sucesso
-      // setTimeout(onClose, 2000);
     } catch (error) {
       const axiosError = error as AxiosError<{ message?: string }>;
       setMensagem({
         tipo: "erro",
         texto:
           axiosError.response?.data?.message ||
-          "Erro ao cadastrar farmacêutico. Tente novamente.",
+          "Erro ao cadastrar medicamento. Tente novamente.",
       });
     } finally {
       setLoading(false);
@@ -102,15 +108,11 @@ export default function ModalCadastroFarmaceutico({
 
   return (
     <>
-      <PopupCadastroSucesso
+      <PopupCadastroMedicamentoSucesso
         isOpen={showSuccessPopup}
         onClose={() => {
           setShowSuccessPopup(false);
-          onClose(); // Fecha o modal de cadastro também ao fechar o popup de sucesso?
-          // O usuário pode querer cadastrar outro, mas geralmente "OK" fecha o fluxo.
-          // Se quiser manter o modal de cadastro aberto, remova o onClose() aqui.
-          // Vou assumir que fecha tudo ou pelo menos o popup.
-          // O comportamento "OK" geralmente confirma que viu e fecha.
+          onClose();
         }}
         dados={successData}
       />
@@ -127,19 +129,19 @@ export default function ModalCadastroFarmaceutico({
 
           <div className="px-8 py-6">
             <h2 className="text-2xl font-bold text-center mb-6 text-blue-900">
-              CADASTRO FARMACÊUTICO
+              CADASTRO MEDICAMENTOS
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
                 <label className="block text-sm font-medium mb-1 text-black">
-                  Nome
+                  Nome Medicamento
                 </label>
                 <input
                   type="text"
                   name="nome"
                   value={form.nome}
-                  placeholder="Ex.: Vitor"
+                  placeholder="Ex.: Paracetamol"
                   onChange={handleChange}
                   className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black text-sm"
                   required
@@ -147,13 +149,13 @@ export default function ModalCadastroFarmaceutico({
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1 text-black">
-                  Sobrenome
+                  Dosagem
                 </label>
                 <input
                   type="text"
-                  name="sobrenome"
-                  value={form.sobrenome}
-                  placeholder="Ex.: Silva"
+                  name="dosagem"
+                  value={form.dosagem}
+                  placeholder="Ex.: 500 mg"
                   onChange={handleChange}
                   className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black text-sm"
                   required
@@ -161,13 +163,13 @@ export default function ModalCadastroFarmaceutico({
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1 text-black">
-                  CPF
+                  Tipo
                 </label>
                 <input
                   type="text"
-                  name="CPF"
-                  value={form.CPF}
-                  placeholder="Ex.: 123.456.789-00"
+                  name="tipo"
+                  value={form.tipo}
+                  placeholder="Ex.: Analgésico"
                   onChange={handleChange}
                   className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black text-sm"
                   required
@@ -175,13 +177,13 @@ export default function ModalCadastroFarmaceutico({
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1 text-black">
-                  Telefone
+                  Tarja
                 </label>
                 <input
                   type="text"
-                  name="telefone"
-                  value={form.telefone}
-                  placeholder="Ex.: (11) 91234-5678"
+                  name="tarja"
+                  value={form.tarja}
+                  placeholder="Ex.: Tarja vermelha"
                   onChange={handleChange}
                   className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black text-sm"
                   required
@@ -189,17 +191,44 @@ export default function ModalCadastroFarmaceutico({
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1 text-black">
-                  Matrícula
+                  Via de consumo
                 </label>
                 <input
                   type="text"
-                  name="matricula"
-                  value={form.matricula}
-                  placeholder="Ex.: 123456"
+                  name="via_consumo"
+                  value={form.via_consumo}
+                  placeholder="Ex.: Oral"
                   onChange={handleChange}
                   className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black text-sm"
                   required
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-black">
+                  Mg/ml
+                </label>
+                <input
+                  type="text"
+                  name="mg_ml"
+                  value={form.mg_ml}
+                  placeholder="Ex.: 5 mg/ml"
+                  onChange={handleChange}
+                  className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-black">
+                  Alertas
+                </label>
+                <textarea
+                  name="alertas"
+                  value={form.alertas}
+                  placeholder="Ex.: Não administrar com bebidas alcoólicas"
+                  onChange={handleChange}
+                  className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black resize-none text-sm"
+                  rows={2}
+                ></textarea>
               </div>
               {mensagem && (
                 <div

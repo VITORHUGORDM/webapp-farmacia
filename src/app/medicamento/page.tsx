@@ -14,7 +14,7 @@ import NavBar from "@/app/components/navBar";
 import TopBar from "../components/topBar";
 import api from "../services/api";
 import { Consulta, Paciente } from "../interfaces/types";
-import ModalCadastroMedicamento from "../cadastroMedicamentos/ModalCadastroMedicamento";
+import ModalCadastroMedicamento from "../cadastroMedicamentos/page";
 
 export default function PaginaTratamento() {
   const router = useRouter();

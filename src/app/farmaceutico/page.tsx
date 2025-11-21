@@ -13,12 +13,12 @@ import { UserIcon as UserIconSolid } from "@heroicons/react/24/solid";
 import NavBar from "@/app/components/navBar";
 import TopBar from "../components/topBar";
 import api from "../services/api";
-import { Consulta, Paciente } from "../interfaces/types";
-import ModalCadastroFarmaceutico from "../components/ModalCadastroFarmaceutico";
+import { Tratamento, Paciente } from "../interfaces/types";
+import ModalCadastroFarmaceutico from "../cadastroFarmaceutico/page";
 
 export default function PaginaTratamento() {
   const router = useRouter();
-  const [consultas, setConsultas] = useState<Consulta[]>([]);
+  const [consultas, setConsultas] = useState<Tratamento[]>([]);
   const [pacientes, setPacientes] = useState<Paciente[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function PaginaTratamento() {
   async function fetchData() {
     try {
       const [consultasRes, pacientesRes] = await Promise.all([
-        api.get<Consulta[]>("/consulta"),
+        api.get<Tratamento[]>("/tratamento"),
         api.get<Paciente[]>("/paciente"),
       ]);
       setConsultas(consultasRes.data);

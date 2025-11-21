@@ -7,7 +7,7 @@ export interface Horario {
   horario: string;
 }
 
-export interface Consulta {
+export interface Tratamento {
   id?: number | string;
   paciente_id: number | string;
   data_consulta: Date | string;
