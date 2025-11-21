@@ -36,6 +36,7 @@ npm run dev
 
 Estrutura do Projeto
 
+
 📦 webapp-farmacia
 ┣ 📂 public/           # Arquivos estáticos (imagens, fontes, etc.)
 ┣ 📂 app/              # Estrutura principal do Next.js
@@ -48,16 +49,16 @@ Estrutura do Projeto
 
 Branches
 
-    main: Branch principal para versões estáveis.
-    develop: Branch para desenvolvimento em andamento.
+    main: Branch para desenvolvimento em andamento.
+    develop: Branch principal para versões estáveis.
 
 Contribuindo
 
 Para contribuir com o projeto, siga estes passos:
 
-    Crie uma nova branch a partir da develop:
+    Crie uma nova branch a partir da main:
 
-    git checkout develop
+    git checkout main
     git checkout -b sua-nova-branch
 
 Faça suas alterações e commits:
@@ -106,3 +107,4 @@ Dicas adicionais
 Contato
 
     lads@iesgo.edu.br
+
