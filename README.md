@@ -39,13 +39,21 @@ Estrutura do Projeto
 
 📦 webapp-farmacia
 ┣ 📂 public/           # Arquivos estáticos (imagens, fontes, etc.)
+
 ┣ 📂 app/              # Estrutura principal do Next.js
+
 ┃ ┣ 📂 components/     # Componentes reutilizáveis
+
 ┃ ┣ 📂 styles/         # Estilos globais
+
 ┃ ┗ 📜 page.tsx        # Página principal do aplicativo
+
 ┣ 📜 package.json      # Dependências do projeto
+
 ┣ 📜 tsconfig.json     # Configuração do TypeScript
+
 ┗ 📜 README.md         # Documentação do projeto
+
 
 Branches
 
@@ -107,4 +115,5 @@ Dicas adicionais
 Contato
 
     lads@iesgo.edu.br
+
 
