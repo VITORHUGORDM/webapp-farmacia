@@ -15,6 +15,7 @@ export default function cadastroFarmaceutico() {
     CPF: "",
     telefone: "",
     genero: "",
+    matricula: "",
   });
   const [loading, setLoading] = useState(false);
   const [mensagem, setMensagem] = useState<{
@@ -50,6 +51,7 @@ export default function cadastroFarmaceutico() {
         CPF: "",
         telefone: "",
         genero: "",
+        matricula: "",
       });
 
       setMensagem({
@@ -132,7 +134,20 @@ export default function cadastroFarmaceutico() {
                     required
                   />
                 </div>
-                <div></div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    Matricula
+                  </label>
+                  <input
+                    type="text"
+                    name="matricula"
+                    value={form.matricula}
+                    placeholder="Ex.: 123456"
+                    onChange={handleChange}
+                    className="border border-gray-300 rounded-[10px] px-3 py-2 w-full text-black text-sm"
+                    required
+                  />
+                </div>
                 {mensagem && (
                   <div
                     className={`text-center font-semibold rounded-[10px] p-2 text-sm ${

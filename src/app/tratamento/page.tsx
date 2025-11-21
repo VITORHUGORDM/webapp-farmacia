@@ -14,12 +14,14 @@ import NavBar from "../components/navBar";
 import TopBar from "../components/topBar";
 import api from "../services/api";
 import { Consulta, Paciente } from "../interfaces/types";
+import ModalAdicionarTratamento from "../adicionarTratamento/ModalAdicionarTratamento";
 
-export default function PaginaTratamento() {
+export default function Tratamento() {
   const router = useRouter();
   const [consultas, setConsultas] = useState<Consulta[]>([]);
   const [pacientes, setPacientes] = useState<Paciente[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     fetchData();
@@ -113,6 +115,17 @@ export default function PaginaTratamento() {
               </div>
             </div>
           </div>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="fixed bottom-10 right-10 px-25 py-8 bg-blue-900 text-white rounded-full p-4 shadow-lg hover:bg-blue-800 transition-colors pointer-events-auto"
+          >
+            <h1>Adicionar Tratamento</h1>
+          </button>
+          {isModalOpen && (
+            <ModalAdicionarTratamento
+              {...({ onClose: () => setIsModalOpen(false) } as any)}
+            />
+          )}
         </main>
       </div>
     </div>
